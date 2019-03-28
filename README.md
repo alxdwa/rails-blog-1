@@ -1,24 +1,71 @@
-# README
+# rails-blog-1 #
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+First day of learning Rails and deploying to Heroku. Blog created following instructions on [Rails Guides - Getting Started with Rails](https://guides.rubyonrails.org/getting_started.html), and deployed on Heroku [here](https://powerful-wildwood-70939.herokuapp.com/).
 
-Things you may want to cover:
+Notes from today:
 
-* Ruby version
+Create new rails app:
+`rails new <filename> -d postgresql`
 
-* System dependencies
+Change into directory:
+`cd <filename>`
 
-* Configuration
+Create database
+`rails db:create`
 
-* Database creation
+Migrate database
+`rails db:migrate`
 
-* Database initialization
+While inside directory, initialize Heroku:
+`Heroku create`
 
-* How to run the test suite
+A remote repo called 'heroku' is created. We can then use git to push our code onto the web server:
+```
+git add .
+git commit -m "MESSAGE"
+git push heroku master
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+----
 
-* Deployment instructions
+I initially created rails directory/app using default sqlite3, so I had to manually change db to postgres. I followed these steps:
 
-* ...
+1. Changed Gemfile--removed sqlite3 line and added 'pg'
+2. `bundle update`
+3. edited database.yml file 
+```
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: demo_test_development
+  pool: 5
+  timeout: 5000
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: demo_test_test
+  pool: 5
+  timeout: 5000
+```
+
+4. `rails db:setup`
+5. `rails db:migrate`
+
+----
+
+Other commands run today:
+
+if not specifying postgres as db:
+`rails new <appname>`
+then update gemfile sqlite line with version: 'sqlite3', '<1.4'
+
+created a basic scaffold:
+`rails g scaffold Post title:string body:text`
+`rails db:migrate`
+
+for help, and output dependent on pwd:
+`rails -h`
+
+
+~/CA/28mar/blog
