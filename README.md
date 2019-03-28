@@ -25,6 +25,8 @@ git add .
 git commit -m "MESSAGE"
 git push heroku master
 ```
+every time we update database / change a resource, we have to migrate db as heroku doesn't do this automatically:
+`heroku run rails db:migrate`
 
 ----
 
